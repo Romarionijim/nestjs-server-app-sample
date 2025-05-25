@@ -119,12 +119,15 @@ $ npx playwright install
 ```bash
 # Start development server
 $ npm run start:dev
+```
 
+## Testing
+
+The project includes a comprehensive API testing suite:
+
+```bash
 # Run API tests
 $ npm run test:api
-
-# Generate API documentation
-$ npm run docs
 ```
 
 ## Deployment
@@ -169,21 +172,6 @@ Once the application is running, visit `http://localhost:3000/api` for Swagger d
   - GET `/users/:id` - Get user by ID (protected)
   - PATCH `/users/:id` - Update user (protected)
   - DELETE `/users/:id` - Delete user (protected)
-
-## Testing
-
-The project includes a comprehensive testing suite:
-
-```bash
-# Run API tests
-$ npm run test:api
-
-# Run unit tests
-$ npm run test
-
-# Run e2e tests
-$ npm run test:e2e
-```
 
 ## GitHub Actions CI/CD
 
