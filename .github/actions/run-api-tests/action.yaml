@@ -47,3 +47,11 @@ runs:
     - name: Run API tests
       shell: bash
       run: npx playwright test --grep ${{ inputs.tags }}
+
+    - uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
+      with:
+        name: playwright-report-${{ inputs.tags }}
+        path: api/playwright-report/
+        retention-days: 30
+        

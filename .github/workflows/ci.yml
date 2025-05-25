@@ -70,14 +70,7 @@ jobs:
       uses: ./.github/actions/run-api-tests
       with:
         tags: ${{ matrix.tags }}
-
-    - uses: actions/upload-artifact@v4
-      if: ${{ !cancelled() }}
-      with:
-        name: playwright-report-${{ matrix.tags }}
-        path: api/playwright-report/
-        retention-days: 30
-
+        
   deploy_to_dockerHub:
     name: Deploy to Docker Hub
     needs: build_and_run_api_tests
