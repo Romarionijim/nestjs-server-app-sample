@@ -163,7 +163,3 @@ $ npm run test:e2e
 2. Commit your changes
 3. Push to the branch
 4. Create a Pull Request
-
-## License
-
-This project is MIT licensed.
