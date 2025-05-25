@@ -38,12 +38,12 @@ A robust NestJS-based server application that implements a comprehensive authent
 ## Project Structure
 
 ```
-├── api/               # API testing infrastructure
+├── api/                # API testing infrastructure
 │   ├── fixtures/       # Test fixtures and setup
 │   ├── infra/          # Infrastructure code
 │   ├── tests/          # API tests
 │   └── utils/          # Utilities and helpers
-├── src/               # Application source code
+├── src/                # Application source code
 │   ├── auth/           # Authentication module
 │   ├── users/          # Users module
 │   └── middleware/     # Custom middleware
