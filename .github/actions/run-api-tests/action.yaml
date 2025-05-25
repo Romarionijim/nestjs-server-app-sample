@@ -48,10 +48,29 @@ runs:
       shell: bash
       run: npx playwright test --grep ${{ inputs.tags }}
 
-    - uses: actions/upload-artifact@v4
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: playwright-report-${{ inputs.tags }}
+        path: api/playwright-report/
+        retention-days: 30
+
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+
+    - name: Upload Pages artifact
+      uses: actions/upload-pages-artifact@v3
       if: ${{ !cancelled() }}
       with:
         name: playwright-report-${{ inputs.tags }}
         path: api/playwright-report/
         retention-days: 30
         
+    - name: Deploy to GitHub Pages
+      uses: actions/deploy-pages@v4
+      if: ${{ !cancelled() }}
+      with:
+        token: ${{ github.token }}
+        artifact_name: playwright-report-${{ inputs.tags }}
+        path: ${{ inputs.tags }}
