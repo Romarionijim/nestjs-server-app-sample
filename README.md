@@ -38,16 +38,44 @@ A robust NestJS-based server application that implements a comprehensive authent
 ## Project Structure
 
 ```
-├── api/                # API testing infrastructure
-│   ├── fixtures/       # Test fixtures and setup
-│   ├── infra/          # Infrastructure code
-│   ├── tests/          # API tests
-│   └── utils/          # Utilities and helpers
-├── src/                # Application source code
-│   ├── auth/           # Authentication module
-│   ├── users/          # Users module
-│   └── middleware/     # Custom middleware
-└── docker/             # Docker configuration
+.
+├── .github/
+│   ├── actions/         # Custom GitHub Actions
+│   └── workflows/       # CI/CD pipeline configurations
+├── api/                 # API testing infrastructure
+│   ├── enums/          # Enums for URLs, endpoints, methods, etc.
+│   │   ├── application-urls.enum.ts
+│   │   ├── endpoints.enum.ts
+│   │   ├── request-methods.enum.ts
+│   │   ├── status-codes.enum.ts
+│   │   └── test-tags.enum.ts
+│   ├── fixtures/       # Test fixtures and data setup
+│   │   ├── auth.fixture.ts
+│   │   ├── global.fixture.ts
+│   │   ├── merged-fixtures.fixture.ts
+│   │   ├── service.fixture.ts
+│   │   └── scripts/
+│   ├── helpers/        # Test helpers and factories
+│   │   └── factory/
+│   ├── infra/         # Test infrastructure
+│   │   ├── api-client.ts
+│   │   └── services/
+│   ├── logger/        # Custom logging
+│   │   └── custom.logger.ts
+│   ├── tests/         # API test suites
+│   │   ├── auth-api/  # Authentication tests
+│   │   └── users-api/ # User management tests
+│   ├── types/         # TypeScript type definitions
+│   │   ├── request.types.ts
+│   │   └── user/
+│   └── utils/         # Testing utilities
+│       └── mocks/
+├── src/               # Application source code
+│   ├── auth/          # Authentication module
+│   ├── users/         # Users module
+│   └── middleware/    # Custom middleware
+├── docker-compose.yml # Docker compose configuration
+└── Dockerfile        # Docker image definition
 ```
 
 ## Features
@@ -156,6 +184,24 @@ $ npm run test
 # Run e2e tests
 $ npm run test:e2e
 ```
+
+## GitHub Actions CI/CD
+
+This project uses GitHub Actions for continuous integration and deployment. The pipeline includes:
+
+### Automated Testing
+- Triggers on:
+  - Push to main branch
+  - Pull requests to main branch
+  - Manual workflow dispatch
+- Runs API tests in parallel for different test suites (@users, @auth)
+- Uses Docker Compose for test environment setup
+- Validates server health before running tests
+
+### Continuous Deployment
+- Automatically deploys to Docker Hub on successful main branch pushes
+- Requires successful test completion
+- Builds and pushes latest Docker image
 
 ## Contributing
 
